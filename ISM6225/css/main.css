@@ -1,0 +1,314 @@
+body{
+    background-color: #f2f2f2;
+    /* background-color: rgb(29, 29, 31); */
+    background-image:none;
+}
+.navigation_bar {
+    background-color: rgb(29, 29, 31);
+    text-align: center;
+    overflow: hidden;
+    /* position: fixed;  */
+    width: 100%;
+  }
+  /* .navigation_bar ul {
+    display: inline-block;
+    list-style-type: none;
+} */
+.navigation_bar a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  h4{
+    color: red;
+  }
+.navigation_bar a:hover {
+    background-color: #97948f;
+    color: #f8f5f1;
+  }
+  
+.navigation_bar a.active {
+    background-color: #97948f;
+    color: white;
+  }
+
+  .navigation_bar a.Login {
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    border-top: 5%;
+    border-left: 5%;
+    border-right: 5%;
+    border-bottom: 5%;
+    text-decoration: none;
+    font-size: 17px;
+
+  }
+.ProductDescriptionlink{
+    background-color: #ffffff;
+    float: left;
+    color: rgb(29, 29, 31);
+    text-align: center;
+    /* padding: 14px 16px; */
+    text-decoration: none;
+    font-size: 17px;
+    width: 100%;
+    height: auto;
+
+}
+.ProductDescriptionlink button {
+    background-color: #4CAF50;
+    border:0in;
+    color: white;
+    border-radius: 8px;
+    padding: 32px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+footer { 
+    display: block;
+    float: left;
+    color: #1c1a1a;
+    /* text-align: center; */
+    /* padding: 14px 16px; */
+    text-decoration: none;
+    font-size: 17px;
+  }
+.Main {
+    float: left;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
+    height: 20%;
+    background-color: #ebe6e1;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+.Main p{
+    /* background-image: url("/Users/apple/Desktop/Python_training/ISM6225/Images/DSC_2786.jpg"); */
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    text-align: center;
+    color: rgb(29, 29, 31);
+    font-style: italic;
+    border-color: brown;
+    border-width: 100px;
+    border-top: 100px;
+    border-left: 20px;
+    border-right: 20px;
+    border-bottom: 100px;
+
+}
+.Main h3{
+        color: rgb(29, 29, 31);
+        text-align: center;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 40px;
+        font-style: italic;
+}
+.My-picture img{
+    height: 20%;
+    width: 17%;
+    padding: 1%;
+}
+
+.My-picture{
+    width: 100%;
+}
+
+.Quote-pic {
+    background-color: #ebe6e1;
+    /* background-image: url("/Users/apple/Desktop/Python_training/ISM6225/Images/DSC_2786 copy.pdf"); */
+    float: left;
+    color: rgb(29, 29, 31);
+    text-align: center;
+    /* padding: 14px 16px; */
+    text-decoration: none;
+    font-size: 17px;
+    width: 100%;
+    height: auto;
+  
+}
+h2,h3{
+    font-style: italic;
+}
+
+
+
+
+
+
+
+.h1{
+    color: rgb(248, 246, 246);
+    text-align: center;
+}
+.p{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    text-align: center;
+    color: rgb(213, 132, 27);
+    font-style: italic;
+    border-color: brown;
+    border-width: 100px;
+    border-top: 100px;
+    border-left: 20px;
+    border-right: 20px;
+    border-bottom: 100px;
+}
+
+ 
+
+.EnquiryForm {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+input{
+    width: 20%;
+}
+
+img{
+   
+      height: 10%;
+      max-width: 20%;
+    
+}
+.Logo{
+    background-color: #fbfbfd;;
+    /* float: left; */
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    overflow: hidden;
+
+}
+.Logo img{
+   
+    height: 100px;
+    max-width: 30%;
+  
+}
+.section-container {
+    background: darkorange;
+    display: grid;
+}
+
+.intro-container {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-template-rows: auto;
+    grid-gap: 10px;
+    background: antiquewhite;
+}
+
+.picture {
+    padding: 15px 15px 0px 15px
+}
+
+.picture img {
+    max-width: 100%;
+    height: auto;
+}
+.products{
+    background-color: #ffffff;
+    float: center;
+    color: rgb(29, 29, 31);
+    text-align: center;
+    /* padding: 14px 16px; */
+    text-decoration: none;
+    font-size: 17px;
+    width: 100%;
+  
+  }
+.products button {
+    background-color: #4CAF50;
+    border:0in;
+    color: white;
+    border-radius: 8px;
+    padding: 32px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+.products img {
+    height: 300px;
+    width: 17%;
+    padding: 1%;
+  }
+  
+.products h2 {
+    font-size: 24px;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  
+  
+  
+  .products p.description {
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: center;
+    margin: 10px 0;
+    max-width: 50%;
+  }
+  
+  .products form label {
+    display: block;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .products form button[type="button"] {
+    background-color: #333;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 10px;
+    text-transform: uppercase;
+  }
+  
+  .products form button[type="button"]:hover {
+    background-color: #c00;
+  }
+    
+
+.intro {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    padding-left: 10px;
+}
+
+.git-section {
+    background: khaki;
+    height: 50px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.title-font {
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.footer-container {
+    background: rgb(29, 29, 31);
+    width: -webkit-fill-available;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 14px 16px;
+}
