@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        background: antiquewhite;
+    }
+
+    html,
+    body {
+        height: 100%;
+    }
+
+    main {
+        flex: 1;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    .navbar div {
+        align-items: center;
+        display: flex;
+    }
+
+    .navbar div span#logo {
+        cursor: pointer;
+    }
+
+    .navbar div span.title {
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .navbar-dark .navbar-toggler {
+        color: #fff;
+        border-color: #fff;
+    }
+
+    .nav-item {
+        display: flex;
+    }
+
+    .nav-item i {
+        align-content: center;
+        display: flex;
+        flex-wrap: wrap;
+        color: aliceblue;
+        padding-left: 10px;
+    }
+
+    .nav-item span {
+        display: flex;
+        color: aliceblue;
+        align-items: center;
+        padding-left: 5px;
+    }
+
+    .nav-item .nav-link {
+        color: #f0f8ff !important;
+    }
+
+    .navbar-nav li .active {
+        color: #ff8c00 !important;
+    }
+
+    #edit-form button {
+        display: block;
+        width: 200px;
+        padding: 12px;
+        background-color: #24292e;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 18px;
+        font-weight: 600;
+        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .msg {
+        color: red;
+    }
+
+    #edit-form button:hover {
+        background-color: #2f363d;
+        color: #fff;
+    }
+
+    footer {
+        margin-top: auto;
+    }
+
+    footer .row div {
+        text-align: center;
+    }
+</style>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-expand-md navbar-dark bg-dark">
+            <div>
+                <span class="fa-stack fa-2x" id="logo" onclick="redirectToPage()">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-camera fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="title" id="logo" onclick="redirectToPage()">Shot by Shot</span>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/product">Product Description</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/about">About <span class="sr-only">(current)</span></a>
+                    </li>
+                    {% if 'user_id' not in session %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">Register</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <i class="fa fa-user"></i>
+                        <a class="nav-link" class="username">{{ user[2] }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('signout') }}" class="nav-link">Sign Out</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="row justify-content-center" style="max-width: 100%;">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Edit Profile</h1>
+                    <form id="edit-form" action="{{url_for('profile')}}" method="post">
+                        <div class="form-group">
+                            <label for="firstname">First Name:</label>
+                            <input name="firstname" type="text" id="firstname" name="firstname" value="{{ user[1] }}"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname">Last Name:</label>
+                            <input name="lastname" type="text" id="lastname" name="lastname" value="{{ user[2] }}"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input name="email" type="email" id="email" name="email" value="{{ user[4] }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">Date of Birth:</label>
+                            <input name="dob" type="date" id="dob" name="dob" value="{{ user[3] }}" required>
+                        </div>
+                        <button type="submit" value="Save Changes">Save Changes</button>
+                        <div class="msg">{{msg}}</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer bg-dark container-fluid mt-3">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="text-muted small">&copy; 2023 All rights reserved to</p>
+                    <p class="text-muted small">
+                        Uma Shankar Santhosh<br>
+                        Gnana Abhishek Boga<br>
+                        ManasaVeena Sudini<br>
+                        Vivek Reddy<br>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+CREATE TABLE User (
+  id INTEGER PRIMARY KEY,
+  firstname TEXT NOT NULL,
+  lastname TEXT NOT NULL,
+  dob DATE NOT NULL,
+  email TEXT UNIQUE NOT NULL,
+  password TEXT NOT NULL
+);
+
+INSERT INTO User (firstname, lastname, dob, email, password) VALUES ('John', 'Doe', '1990-01-01', 'johndoe@example.com', 'password123');

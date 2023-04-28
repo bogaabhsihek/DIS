@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    .navbar div {
+        align-items: center;
+        display: flex;
+    }
+
+    .navbar div span#logo {
+        cursor: pointer;
+    }
+
+    .navbar div span.title {
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .navbar-dark .navbar-toggler {
+        color: #fff;
+        border-color: #fff;
+    }
+
+    .nav-item {
+        display: flex;
+    }
+
+    .nav-item i {
+        align-content: center;
+        display: flex;
+        flex-wrap: wrap;
+        color: aliceblue;
+        padding-left: 10px;
+    }
+
+    .nav-item .username {
+        display: flex;
+        color: aliceblue !important;
+        align-items: center;
+        padding-left: 5px;
+    }
+
+    .nav-item .nav-link {
+        color: #f0f8ff !important;
+    }
+
+    .navbar-nav li.active .nav-link {
+        color: #ff8c00 !important;
+    }
+
+    .landing-container {
+        background: #faebd7;
+        padding: 10px;
+    }
+
+    .main-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .Page1-header {
+        padding: 15px;
+        margin: 0;
+    }
+
+    .image-container {
+        padding: 0;
+    }
+
+    .image-container .row {
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .image-container .row div {
+        padding: 0;
+    }
+
+    .img-fluid {
+        height: 400px;
+        width: -webkit-fill-available;
+    }
+
+    @media (max-width: 767px) {
+        .img-fluid {
+            height: auto;
+        }
+    }
+
+    .Quote-pic {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 15px;
+        background: #ff8c00;
+    }
+
+    .ProductDescriptionlink {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding-bottom: 25px;
+    }
+
+    #clickMe {
+        display: block;
+        width: 200px;
+        padding: 12px;
+        background-color: #24292e;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 18px;
+        font-weight: 600;
+        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    #clickMe:hover {
+            background-color: #2f363d;
+            color: #fff;
+        }
+
+    footer .container-fluid {
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+    }
+
+    footer .row div {
+        text-align: center;
+    }
+
+    footer .row div p {
+        margin-bottom: 0;
+    }
+</style>
+
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-expand-md navbar-dark bg-dark">
+            <div>
+                <span class="fa-stack fa-2x" id="logo">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-camera fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="title" id="logo">Shot by Shot</span>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/product">Product Description</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    {% if not 'user_id' in session %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">Register</a>
+                    </li>
+                    {% endif %}
+                    {% if 'user_id' in session %}
+                        <li class="nav-item">
+                            <i class="fa fa-user"></i>
+                            <a href="{{ url_for('profile')}}"  class="username">{{ user[2] }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('signout') }}" class="nav-link">Sign Out</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="landing-container" style="background: #faebd7">
+        <div class="main-container">
+            <h3>Hey People Welcome to my world !!!</h3>
+            <p class="Page1-header">
+                We are a photography services company which provides services
+                across various types of photography. We offer a wide variety of services like Fashion
+                photography, Abstract photography, Nature Photography, Commercial Photography.
+            </p>
+            <h4> *** We also offer Photo Printing services which
+                comes at an extra cost.</h4>
+        </div>
+        <div class="container image-container">
+            <div class="row">
+                <div class="col-md-6 col-lg-4 image-stack">
+                    <img src="{{ url_for('static', filename='images/landing/watch-photo.avif') }}" class="img-fluid" alt="Image 1">
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <img src="{{ url_for('static', filename='images/landing/DSC_3703 copy.jpg') }}" class="img-fluid" alt="Image 2">
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <img src="{{ url_for('static', filename='images/landing/DSC_1824_with signature copy.jpg') }}" class="img-fluid" alt="Image 3">
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <img src="{{ url_for('static', filename='images/landing/UDAYA_SIGNATURE copy.png') }}" class="img-fluid" alt="Image 4">
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <img src="{{ url_for('static', filename='images/landing/DSC_9008 copy.jpg') }}" class="img-fluid" alt="Image 5">
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <img src="{{ url_for('static', filename='images/landing/image_6.avif') }}" class="img-fluid" alt="Image 5">
+                </div>
+            </div>
+        </div>
+        <div class="Quote-pic">
+            <h2>
+                "You don't take a photograph, you make it"
+            </h2><br>
+            <h3>
+                -- Ansel Adams
+            </h3>
+        </div>
+        <div class="ProductDescriptionlink">
+            <h2>
+                Please Press the Button below to see our services.
+            </h2>
+            <button id="clickMe" type="button" class="btn" onclick="handleClickMe()">Click Me!!</button>
+        </div>
+    </div>
+    <script>
+        function handleClickMe() {
+            window.location.href = '/product';
+        }
+    </script>
+</body>
+<footer class="footer bg-dark container-fluid">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text-muted small">&copy; 2023 All rights reserved to</p>
+                <p class="text-muted small">
+                    Uma Shankar Santhosh<br>
+                    Gnana Abhishek Boga<br>
+                    ManasaVeena Sudini<br>
+                    Vivek Reddy<br>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

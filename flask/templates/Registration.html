@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.navbar-nav li').click(function (event) {
+                // event.preventDefault(); // prevent link behavior
+                $('.navbar-nav li.active').removeClass('active');
+                $(this).addClass('active');
+            });
+        });
+        function redirectToPage() {
+            // Redirect to another page
+            window.location.href = "/";
+        }
+    </script>
+    <style>
+        .navbar div {
+            align-items: center;
+            display: flex;
+        }
+
+        .navbar div span#logo {
+            cursor: pointer;
+        }
+
+        .navbar div span.title {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .navbar-dark .navbar-toggler {
+            color: #fff;
+            border-color: #fff;
+        }
+
+        .nav-item .nav-link {
+            color: #f0f8ff !important;
+        }
+
+        .navbar-nav li .active {
+            color: #ff8c00 !important;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            background: antiquewhite;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        #myRegistrationForm button {
+            display: block;
+            width: 200px;
+            padding: 12px;
+            background-color: #24292e;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: 600;
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .msg {
+            color: red;
+        }
+
+        #myRegistrationForm button:hover {
+            background-color: #2f363d;
+            color: #fff;
+        }
+
+        footer {
+            margin-top: auto;
+        }
+
+        footer .container-fluid {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        footer .row div {
+            text-align: center;
+        }
+
+        footer .row div p {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-expand-md navbar-dark bg-dark">
+            <div>
+                <span class="fa-stack fa-2x" id="logo" onclick="redirectToPage()">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-camera fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="title" id="logo" onclick="redirectToPage()">Shot by Shot</span>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/product">Product Description</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/register">Register <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="container mt-5 pt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="myRegistrationForm" action="{{ url_for('register') }}" method="post">
+                            <div class="msg">{{ msg }}</div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="form-group">
+                                        <label for="first-name">First name*</label>
+                                        <input name="firstname" type="text" class="form-control" id="first-name"
+                                            name="first-name" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="form-group">
+                                        <label for="last-name">Last name*</label>
+                                        <input name="lastname" type="text" class="form-control" id="last-name"
+                                            name="last-name" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="dob">Date of birth*</label>
+                                        <input name="dob" type="date" class="form-control" id="dob" name="dob" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="form-group">
+                                        <label for="email">Email address*</label>
+                                        <input name="email" type="email" class="form-control" id="email" name="email"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="form-group">
+                                        <label for="password">Password*</label>
+                                        <input name="password" type="password" class="form-control" id="password"
+                                            name="password" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="form-group">
+                                        <label for="confirm-password">Confirm password*</label>
+                                        <input name="confirmpassword" type="password" class="form-control"
+                                            id="confirm-password" name="confirm-password" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <button type="submit" class="btn">Register</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+    <footer class="footer bg-dark container-fluid mt-3">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="text-muted small">&copy; 2023 All rights reserved to</p>
+                    <p class="text-muted small">
+                        Uma Shankar Santhosh<br>
+                        Gnana Abhishek Boga<br>
+                        ManasaVeena Sudini<br>
+                        Vivek Reddy<br>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

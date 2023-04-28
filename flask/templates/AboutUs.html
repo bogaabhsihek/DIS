@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>About Us</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.navbar-nav li').click(function (event) {
+                // event.preventDefault(); // prevent link behavior
+                $('.navbar-nav li.active').removeClass('active');
+                $(this).addClass('active');
+            });
+        });
+        function redirectToPage() {
+            // Redirect to another page
+            window.location.href = "/";
+        }
+    </script>
+    <style>
+        .navbar div {
+            align-items: center;
+            display: flex;
+        }
+
+        .navbar div span#logo {
+            cursor: pointer;
+        }
+
+        .navbar div span.title {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .navbar-dark .navbar-toggler {
+            color: #fff;
+            border-color: #fff;
+        }
+
+        .nav-item {
+            display: flex;
+        }
+
+        .nav-item i {
+            align-content: center;
+            display: flex;
+            flex-wrap: wrap;
+            color: aliceblue;
+            padding-left: 10px;
+        }
+
+        .nav-item span {
+            display: flex;
+            color: aliceblue;
+            align-items: center;
+            padding-left: 5px;
+        }
+
+        .nav-item .nav-link {
+            color: #f0f8ff !important;
+        }
+
+        .navbar-nav li.active .nav-link {
+            color: #ff8c00 !important;
+        }
+
+        body {
+            background: antiquewhite;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 0px;
+            max-width: 1200px;
+        }
+
+        .member {
+            width: calc(50% - 40px);
+            margin: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            background-color: #fff;
+            height: 700px;
+            max-height: 700px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @media (max-width:280px) {
+            .member {
+                height: 900px;
+                max-height: 900px;
+            }
+        }
+
+        .member img {
+            border-radius: 50%;
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+
+        .member h3 {
+            margin: 0;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .member p {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #666;
+        }
+
+        .member a {
+            display: block;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .member a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .member {
+                width: calc(100% - 40px);
+            }
+        }
+
+        .github-link a {
+            display: block;
+            width: 200px;
+            padding: 12px;
+            background-color: #24292e;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: 600;
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .github-link a:hover {
+            background-color: #2f363d;
+            color: #fff;
+        }
+
+        footer .container-fluid {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        footer .row div {
+            text-align: center;
+        }
+
+        footer .row div p {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-expand-md navbar-dark bg-dark">
+            <div>
+                <span class="fa-stack fa-2x" id="logo" onclick="redirectToPage()">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-camera fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="title" id="logo" onclick="redirectToPage()">Shot by Shot</span>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/product">Product Description</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/about">About <span class="sr-only">(current)</span></a>
+                    </li>
+                    {% if 'user_id' not in session %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">Register</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <i class="fa fa-user"></i>
+                        <a class="nav-link" class="username">{{ user[2] }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('signout') }}" class="nav-link">Sign Out</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="member">
+            <img src="{{ url_for('static', filename='images/abhi.JPG') }}" alt="Team Member 1">
+            <h3>Gnana Abhishek Boga</h3>
+            <p>A Data Analyst with up to 3 years of hands-on experience supporting business solutions and Analyzing
+                operations. Expertise in programming with Python, R, and SQL for more than two years of working on
+                different projects. Experience in using Data Mining and Machine learning algorithms like (Linear
+                Regression, Decision Trees, Neural Networks, and SVM) to create models based on business needs. I am
+                also a professional photographer with a part time experience of 2 yrs and have proficiency in
+                fashion and nature photography. I played a key role in the design and development of both the Home and
+                Registration pages, making significant contributions to their creation.</p>
+            <a href="https://github.com/bogaabhsihek" target="_blank">GitHub Profile</a>
+        </div>
+        <div class="member">
+            <img src="{{ url_for('static', filename='images/uma.jpeg') }}" alt="Team Member 2">
+            <h3>Uma Shankar Santhosh</h3>
+            <p>I am Uma Sankar Santhosh Koramutla, pursuing masters in BAIS at USF. Previously I worked as a
+                business
+                analyst at TCS, Hyderabad for 2.5 years.With more than 2 years of experience in the field of
+                analytics,
+                I love to deal with data and solve business problems. My long term goal is to have a startup that
+                provides business solutions to companies from diversified industries. I am proud to have contributed to
+                the project by implementing the Product Description page, leveraging my skills and expertise to ensure
+                its successful development. </p>
+            <a href="https://github.com/SanthoshKoramutla/SanthoshKoramutla" target="_blank">GitHub Profile</a>
+        </div>
+        <div class="member">
+            <img src="{{ url_for('static', filename='images/manasa.jpeg') }}" alt="Team Member 3">
+            <h3>ManasaVeena Sudini</h3>
+            <p>I am ManasaVeena Sudini pursuing masters in BAIS at USF. I worked as a full stack developer in India,
+                Hyderabad around 5 years. To extend my knowledge in data field I have taken Buisness Analytics &
+                Information System in masters. Gained lot of knowlege by taking this course and used this knowledge
+                extensively in my internship as a Data engineer. I had the privilege of contributing to multiple aspects
+                of the project, including designing the framework, collecting and analyzing data, and designing and
+                developing the About Us page. Through my efforts, I was able to make a significant impact on the
+                project's success. </p>
+            <a href="https://github.com/" target="_blank">GitHub Profile</a>
+        </div>
+        <div class="member">
+            <img src="{{ url_for('static', filename='images/vivek.jpeg') }}" alt="Team Member 3">
+            <h3>Vivek Reddy Gurrala</h3>
+            <p>I am Vivek Reddy Gurrala persuing MS BAIS at USF , I had 1 year of experience in Network Monitoring
+                Engineer at Sensen.ai Hyderabad,
+                My aim is to become a Data engineer, watching movies is my free time hobbie. I played a significant role
+                in enhancing the overall look and feel of the website by contributing to the design and development of
+                the login page, as well as other cosmetic aspects of the site. My efforts helped to ensure a
+                user-friendly and visually appealing website that effectively met the needs of our users.</p>
+            <a href="https://github.com/VivekReddyGurrala" target="_blank">GitHub Profile</a>
+        </div>
+        <div class="github-link">
+            <a href="https://github.com/bogaabhsihek" target="_blank">View code on GitHub</a>
+        </div>
+    </div>
+    <footer class="footer bg-dark container-fluid">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="text-muted small">&copy; 2023 All rights reserved to</p>
+                    <p class="text-muted small">
+                        Uma Shankar Santhosh<br>
+                        Gnana Abhishek Boga<br>
+                        ManasaVeena Sudini<br>
+                        Vivek Reddy<br>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

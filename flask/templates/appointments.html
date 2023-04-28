@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Database Results</title>
+</head>
+<body>
+    <h1>These are the appointments in your Database</h1>
+    <table border = 1>
+        <thead>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Date of Birth</td>
+            <td>Query</td>
+        </thead>
+        {% for row in rows %}
+        <tr>
+            <td>{{ row["firstname"] }}</td>
+            <td>{{ row["email"] }}</td>
+            <td>{{ row["dob"] }}</td>
+            <td>{{ row["other"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href = "/">Back to Home Page</a>
+</body>
+</html>

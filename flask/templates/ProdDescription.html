@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Add the required stylesheet and scripts -->
+    <title>Product Description</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<style>
+    .navbar-dark .navbar-nav .nav-link {
+        color: aliceblue;
+    }
+
+    .navbar div {
+        align-items: center;
+        display: flex;
+    }
+
+    .navbar div span#logo {
+        cursor: pointer;
+    }
+
+    .navbar div span.title {
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .navbar-dark .navbar-toggler {
+        color: #fff;
+        border-color: #fff;
+    }
+
+    .nav-item {
+        display: flex;
+    }
+
+    .nav-item i {
+        align-content: center;
+        display: flex;
+        flex-wrap: wrap;
+        color: aliceblue;
+        padding-left: 10px;
+    }
+
+    .nav-item span {
+        display: flex;
+        color: aliceblue;
+        align-items: center;
+        padding-left: 5px;
+    }
+
+    .nav-item .nav-link {
+        color: #f0f8ff !important;
+    }
+
+    .navbar-nav li.active .nav-link {
+        color: #ff8c00 !important;
+    }
+
+    .content-container {
+        background: #faebd7;
+        padding: 15px;
+    }
+
+    #natureCarousel,
+    #fashionCarousel,
+    #commercialCarousel,
+    #abstractCarousel {
+        max-height: 500px;
+    }
+
+    .carousel .carousel-inner .carousel-item {
+        max-height: 500px;
+    }
+
+    #appointment-errors {
+        color: red;
+    }
+
+    .appointmentLink {
+        justify-content: center;
+        display: flex;
+    }
+
+    .appointmentLink button,
+    .modal-body form button {
+        display: block;
+        width: 200px;
+        padding: 12px;
+        background-color: #24292e;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 18px;
+        font-weight: 600;
+        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .appointmentLink button:hover,
+    .modal-body form button:hover {
+        background-color: #2f363d;
+        color: #fff;
+    }
+
+    footer .container-fluid {
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+    }
+
+    footer .row div {
+        text-align: center;
+    }
+
+    footer .row div p {
+        margin-bottom: 0;
+    }
+</style>
+
+<body>
+    <!-- header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-expand-md navbar-dark bg-dark">
+            <div>
+                <span class="fa-stack fa-2x" id="logo" onclick="redirectToPage()">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-camera fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="title" id="logo" onclick="redirectToPage()">Shot by Shot</span>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/product">Product Description</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    {% if 'user_id' not in session %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">Register</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <i class="fa fa-user"></i>
+                        <a class="nav-link" class="username">{{ user[2] }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('signout') }}" class="nav-link">Sign Out</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- container for the carousel-1 -->
+    <div class="content-container">
+        <h2>Nature Photography</h2>
+        <!-- Create a carousel component -->
+        <div id="natureCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Create indicators to navigate between the slides -->
+            <ul class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+                <li data-target="#myCarousel" data-slide-to="3"></li>
+            </ul>
+            <!-- Create the slides -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{{ url_for('static', filename='images/Nature/nature_1.jpeg') }}" alt="Image 1" style="width:100%;">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='images/Nature/nature_2.jpeg') }}" alt="Image 2" style="width:100%;">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='images/Nature/nature_3.jpg') }}" alt="Image 3" style="width:100%;">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='images/Nature/nature_4.jpg') }}" alt="Image 3" style="width:100%;">
+                </div>
+            </div>
+            <!-- Add left and right controls to navigate between the slides -->
+            <a class="carousel-control-prev" href="#natureCarousel" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#natureCarousel" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+        </div>
+        <p class="description">
+            Welcome to USF photography...! Nature provides breathtaking views and stunning sceneries which always
+            make
+            us feel to capture it in the right way. Unfortunately, those scenic beauties cannot be portrayed as
+            picturesque
+            by our mobile phones, but don't worry; we are here to capture those nature scenes you wish to have. You
+            can go through
+            some marvelous photos of Nature which were captured by our professional photographers.
+        </p>
+        <div class="appointmentLink">
+            <button id="prodDescritpion" type="button" class="btn" data-toggle="modal" data-target="#myModal">Book Appointment</button>
+        </div>
+    </div>
+    <!-- container for the carousel-2 -->
+    <div class="content-container">
+        <h2>Fashion Photography</h2>
+        <!-- Create a carousel component -->
+        <div id="fashionCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Create indicators to navigate between the slides -->
+            <ul class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="4" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="5"></li>
+                <li data-target="#myCarousel" data-slide-to="6"></li>
+                <li data-target="#myCarousel" data-slide-to="7"></li>
+            </ul>
+            <!-- Create the slides -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{{ url_for('static', filename='images/fashion/fashion_1.webp') }}" alt="Image 1" style="width:100%;">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='images/fashion/fashion_2.jpeg') }}" alt="Image 2" style="width:100%;">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='images/fashion/fashion_3.jpeg') }}" alt="Image 3" style="width:100%;">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='images/fashion/fashion_4.jpeg') }}" alt="Image 3" style="width:100%;">
+                </div>
+            </div>
+            <!-- Add left and right controls to navigate between the slides -->
+            <a class="carousel-control-prev" href="#fashionCarousel" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#fashionCarousel" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+        </div>
+        <p class="description">
+            Welcome to USF photography...! Fashion is a passion for many glamourous women and handsome men who want
+            to be models
+            and are eager to set foot into the world of celebrities to rule it with an army of fans who admire their
+            hearts. To make it
+            happen, being stylish isn't enough. Intrigued?... yes, you also need stunning pictures of yourself which
+            can catch the eyes of
+            producers and make them stand in front of your door for your Appointment. To make it real,
+            contact USF photography to Book a shoot. Meanwhile, you can have a glance at our previous fashion
+            portraits.
+        </p>
+        <div class="appointmentLink">
+            <button id="prodDescritpion" type="button" class="btn" data-toggle="modal" data-target="#myModal">Book Appointment</button>
+        </div>
+    </div>
+    <!-- container for the carousel-3 -->
+    <div class="content-container">
+        <h2>Commercial Photography</h2>
+        <!-- Create a carousel component -->
+        <div id="commercialCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Create indicators to navigate between the slides -->
+            <ul class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="4" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="5"></li>
+                <li data-target="#myCarousel" data-slide-to="6"></li>
+                <li data-target="#myCarousel" data-slide-to="7"></li>
+            </ul>
+            <!-- Create the slides -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{{ url_for('static', filename='images/Commercial/commercial_1.jpeg') }}" alt="Image 1" style="width:100%;">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='images/Commercial/commercial_2.jpeg') }}" alt="Image 2" style="width:100%;">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='images/Commercial/commercial_3.jpg') }}" alt="Image 3" style="width:100%;">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='images/Commercial/commercial_4.jpeg') }}" alt="Image 3" style="width:100%;">
+                </div>
+            </div>
+            <!-- Add left and right controls to navigate between the slides -->
+            <a class="carousel-control-prev" href="#commercialCarousel" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#commercialCarousel" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+        </div>
+        <p class="description">
+            Welcome to USF photography...! For all Business who wants to enter the market, the product should be
+            showcased in a way that should steal
+            the hearts of viewers and imprints in their brains... what is called a 'First Impression'. You might
+            invest a lot in producing the product
+            then why compromise in advertising it with casual photos that might devalue your product? To make your
+            product exposed with its own rich value
+            contact USF Photography for commercial shoots. Before you do that have a look at our commercial photos.
+        </p>
+        <div class="appointmentLink">
+            <button id="prodDescritpion" type="button" class="btn" data-toggle="modal" data-target="#myModal">Book Appointment</button>
+        </div>
+    </div>
+    <!-- container for the carousel-4 -->
+    <div class="content-container">
+        <h2>Abstract Photography</h2>
+        <!-- Create a carousel component -->
+        <div id="abstractCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Create indicators to navigate between the slides -->
+            <ul class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="4" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="5"></li>
+                <li data-target="#myCarousel" data-slide-to="6"></li>
+                <li data-target="#myCarousel" data-slide-to="7"></li>
+            </ul>
+            <!-- Create the slides -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{{ url_for('static', filename='images/Abstract/abstract_4.webp') }}" alt="Image 3" style="width:100%;">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='images/Abstract/abstract_3.jpeg') }}" alt="Image 3" style="width:100%;">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='images/Abstract/abstract_1.jpeg') }}" alt="Image 1" style="width:100%;">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='images/Abstract/abstract_2.jpeg') }}" alt="Image 2" style="width:100%;">
+                </div>
+            </div>
+            <!-- Add left and right controls to navigate between the slides -->
+            <a class="carousel-control-prev" href="#abstractCarousel" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#abstractCarousel" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+        </div>
+        <p class="description">
+            Welcome to USF photography...! For all Business who wants to enter the market, the product should be
+            showcased in a way that should steal
+            the hearts of viewers and imprints in their brains... what is called a 'First Impression'. You might
+            invest a lot in producing the product
+            then why compromise in advertising it with casual photos that might devalue your product? To make your
+            product exposed with its own rich value
+            contact USF Photography for commercial shoots. Before you do that have a look at our commercial photos.
+        </p>
+        <div class="appointmentLink">
+            <button id="prodDescritpion" type="button" class="btn" data-toggle="modal" data-target="#myModal" >Book Appointment</button>
+        </div>
+    </div>
+    <div class="content-container chart-container">
+        <h2>Photography Views & Likes by Category</h2>
+        <p class="description">
+            Check out the number of views for different photography categories in this bar chart! The chart below
+            shows the number of views for landscape, portrait, nature, and travel photography categories. The data
+            is based on the views of our website visitors for the past month. </p>
+        <p class="description">
+            To view the chart, simply look at the bars below. Each bar represents a different photography category
+            and the height of the bar represents the number of views & Likes for that category. You can hover over each
+            bar
+            to see the exact number of views & Likes. </p>
+        <canvas id="myChart"></canvas>
+    </div>
+    <!-- modal popup with appointment form -->
+    <div class="modal" id="myModal"  data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Book Appointment <Form></Form>
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" >&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form id="appointmentForm" >
+                        <div id="appointment-errors"></div>
+                        <div class="form-group">
+                            <label for="firstname">First name:</label>
+                            <input name="firstname" type="text" class="form-control" id="firstname" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname">Last name:</label>
+                            <input name="lastname" type="text" class="form-control" id="lastname" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">Date of Birth</label>
+                            <input name="dob" type="date" class="form-control" id="dob" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input name="email" type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="query">Other Information:</label>
+                            <input name="other" type="text" class="form-control" id="query" placeholder="Please enter a Query"
+                                required>
+                        </div>
+
+                        <button type="submit" class="btn">Submit</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        function redirectToPage() {
+            // Redirect to another page
+            window.location.href = "/";
+        }
+    </script>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Nature', 'Fashion', 'Commercial', 'Abstract'],
+                datasets: [{
+                    label: 'Views',
+                    data: [60000, 45000, 80000, 70000],
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'likes',
+                    data: [45000, 40000, 60000, 60000],
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+          $('#appointmentForm').on('submit', function(e) {
+            e.preventDefault();
+            var form_data = $(this).serialize();
+        
+            $.ajax({
+              url: '/bookappointment',
+              type: 'POST',
+              data: form_data,
+              success: function(response) {
+                if (response.success) {
+                  // If the appointment was booked successfully, close the modal
+                    document.getElementById("firstname").value = "";
+                    document.getElementById("lastname").value = "";
+                    document.getElementById("dob").value = "";
+                    document.getElementById("email").value = "";
+                    document.getElementById("query").value = "";
+                    var error = ''
+                    $('#appointment-errors').html(error);
+                  $('#myModal').modal('hide');
+                } else {
+                  // If there were errors, display them to the user
+                  var errors_html = '';
+                  for (var i = 0; i < response.errors.length; i++) {
+                    errors_html += response.errors[i];
+                  }
+                
+                  $('#appointment-errors').html(errors_html);
+                }
+              },
+              error: function() {
+                // Handle any errors that occur during the AJAX request
+                alert('An error occurred while booking the appointment. Please try again later.');
+              }
+            });
+          });
+        });
+    </script>
+        
+</body>
+<footer class="footer bg-dark container-fluid">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text-muted small">&copy; 2023 All rights reserved to</p>
+                <p class="text-muted small">
+                    Uma Shankar Santhosh<br>
+                    Gnana Abhishek Boga<br>
+                    ManasaVeena Sudini<br>
+                    Vivek Reddy<br>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

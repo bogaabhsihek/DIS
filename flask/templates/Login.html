@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Add the required stylesheet and scripts -->
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<style>
+    .navbar div {
+        align-items: center;
+        display: flex;
+    }
+
+    .navbar div span#logo {
+        cursor: pointer;
+    }
+
+    .navbar div span.title {
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .navbar-dark .navbar-toggler {
+        color: #fff;
+        border-color: #fff;
+    }
+
+    .nav-item .nav-link {
+        color: #f0f8ff !important;
+    }
+
+    .navbar-nav li .active {
+        color: #ff8c00 !important;
+    }
+
+    .msg {
+        color: red;
+    }
+
+    .login-container {
+        display: flex;
+        justify-content: center;
+        padding: 25px;
+        background: antiquewhite;
+        height: calc(100vh - 150px);
+    }
+
+    .login-container .card {
+        width: fit-content;
+        height: fit-content;
+    }
+
+    .login-container .card form button {
+        display: block;
+        width: 200px;
+        padding: 12px;
+        background-color: #24292e;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 18px;
+        font-weight: 600;
+        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .login-container .card form button:hover {
+        background-color: #2f363d;
+        color: #fff;
+    }
+
+    .footer {
+        position: fixed;
+        bottom: 0;
+    }
+
+    footer .container-fluid {
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+    }
+
+    footer .row div {
+        text-align: center;
+    }
+
+    footer .row div p {
+        margin-bottom: 0;
+    }
+</style>
+<script>
+    function redirectToPage() {
+        // Redirect to another page
+        window.location.href = "/";
+    }
+</script>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-expand-md navbar-dark bg-dark">
+            <div>
+                <span class="fa-stack fa-2x" id="logo" onclick="redirectToPage()">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-camera fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="title" id="logo" onclick="redirectToPage()">Shot by Shot</span>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/product">Product Description</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/login">Login <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="login-container">
+        <div class="card" style="width: fit-content;">
+            <div class="card-body">
+                <form id="myForm" action="/login" method="post">
+                    <div class="msg">{{ msg }}</div>
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                            placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input name="password" type="password" class="form-control" id="password" placeholder="Password">
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="rememberme">
+                        <label class="form-check-label" for="rememberme">Remember me</label>
+                    </div>
+                    <button type="submit" class="btn">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<footer class="footer bg-dark container-fluid">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text-muted small">&copy; 2023 All rights reserved to</p>
+                <p class="text-muted small">
+                    Uma Shankar Santhosh<br>
+                    Gnana Abhishek Boga<br>
+                    ManasaVeena Sudini<br>
+                    Vivek Reddy<br>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>
